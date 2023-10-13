@@ -1,12 +1,11 @@
-SwitchyOmega
-============
+# SwitchyOmega
 
 Manage and switch between multiple proxies quickly & easily.
 
 [![Translation status](https://hosted.weblate.org/widgets/switchyomega/-/svg-badge.svg)](https://hosted.weblate.org/engage/switchyomega/?utm_source=widget)
 
-Chromium Extension
-------------------
+## Chromium Extension
+
 The project is available as a Chromium Extension.
 
 You can try it on [Chrome Web Store](https://chrome.google.com/webstore/detail/padekgcemlokbadohgkifijomclgjgif),
@@ -14,8 +13,7 @@ or grab a packaged extension file (CRX) for offline installation on the [Release
 
 Please [report issues on the issue tracker.](https://github.com/FelisCatus/SwitchyOmega/issues)
 
-Firefox Addon (Experimental)
-----------------------------
+## Firefox Addon (Experimental)
 
 There is also an experimental WebExtension port, which allows installing in
 **Firefox Nightly Version >= 56**.
@@ -37,15 +35,16 @@ Build number AND build date should be mentioned somewhere in the issue.
 
 NOTE: PAC Profiles DO NOT work on Firefox due to AMO review policies. We will see what we can do.
 
-Development status
-------------------
+## Development status
 
 ## PAC generator
+
 This project contains a PAC generating module called `omega-pac`, which handles
 the profiles model and compile profiles into PAC scripts. This module is standalone
 and can be published to npm when the documentation is ready.
 
 ## Options manager
+
 The folder `omega-target` contains browser-independent logic for managing the
 options and applying profiles. Every public method is well documented in the comments.
 Functions related to browser are not included, and shall be implemented in subclasses
@@ -62,6 +61,7 @@ See the `omega-target-chromium-extension/omega_target_web.coffee` file for an
 example of such module.
 
 ## Targets
+
 The `omega-target-*` folders should contain environment-dependent code such as
 browser API calls.
 
@@ -81,13 +81,41 @@ For now, only one target has been implemented: The WebExtension target.
 This target allows the project to be used as a Chromium extension in most
 Chromium-based browsers and also as a Firefox Addon as mentioned above.
 
+## Website code documentation
+
+This is the demo code for button in website. Tailwind CSS is used for styling a button.
+
+```html
+<button
+  id="proxy-import"
+  class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-0 focus:ring-primary-300 font-medium rounded-lg text-sm px-8 py-2.5 ml-4"
+>
+  Import Proxy
+</button>
+```
+
+```javascript
+const buttonId = "proxy-import";
+
+document.getElementById(buttonId).addEventListener("click", function () {
+  if (document.querySelector("body > #switchy-omga-extension")) {
+    console.log("SwitchyOmega is installed");
+  } else {
+    console.log("SwitchyOmega is not installed");
+    window.open(
+      "https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif/overview"
+    );
+  }
+});
+```
+
 ## Translation
 
 Translation is hosted on Weblate. If you want to help improve the translated
 text or start translation for your language, please follow the link of the picture
 below.
 
-本项目翻译由Weblate托管。如果您希望帮助改进翻译，或将本项目翻译成一种新的语言，请
+本项目翻译由 Weblate 托管。如果您希望帮助改进翻译，或将本项目翻译成一种新的语言，请
 点击下方图片链接进入翻译。
 
 [![Translation status](https://hosted.weblate.org/widgets/switchyomega/-/287x66-white.png)](https://hosted.weblate.org/engage/switchyomega/?utm_source=widget)
@@ -100,7 +128,7 @@ npm 2.x is required for this project.
 To build the project:
 
     # Install node and npm first (make sure npm --version > 2.0), then:
-    
+
     sudo npm install -g grunt-cli@1.2.0 bower
     # In the project folder:
     cd omega-build
@@ -117,8 +145,8 @@ To build the project:
 To enable `grunt watch`, run `grunt watch` once in the `omega-build` directory.
 This will effectively run `grunt watch` in every module in this project.
 
-License
--------
+## License
+
 ![GPLv3](https://www.gnu.org/graphics/gplv3-127x51.png)
 
 SwitchyOmega is licensed under [GNU General Public License](https://www.gnu.org/licenses/gpl.html) Version 3 or later.
@@ -130,22 +158,20 @@ the Free Software Foundation, either version 3 of the License, or
 
 SwitchyOmega is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with SwitchyOmega.  If not, see <http://www.gnu.org/licenses/>.
+along with SwitchyOmega. If not, see <http://www.gnu.org/licenses/>.
 
-Notice
-------
+## Notice
 
 SwitchyOmega currently does not have a dedicated project homepage. `switchyomega.com` and similar webites are NOT affiliated with the SwitchyOmega project in any way, nor are they maintained by SwitchyOmega project members. Please refer to this Github repository and wiki for official information.
 
 SwitchyOmega is not cooperating with any proxy providers, VPN providers or ISPs at the moment. No advertisement is displayed in SwitchyOmega project or software. Proxy providers are welcome to recommend SwitchyOmega as part of the solution in tutorials, but it must be made clear that SwitchyOmega is an independent project, is not affiliated with the provider and therefore cannot provide any support on network connections or proxy technology.
 
-重要声明
---------
+## 重要声明
 
 SwitchyOmega 目前没有专门的项目主页。 `switchyomega.com` 等网站与 SwitchyOmega 项目并无任何关联，也并非由 SwitchyOmega 项目成员维护。一切信息请以 Github 上的项目和 wiki 为准。
 
-SwitchyOmega 目前未与任何代理提供商、VPN提供商或 ISP 达成任何合作协议，项目或软件中不包含任何此类广告。欢迎代理提供商在教程或说明中推荐 SwitchyOmega ，但请明确说明此软件是独立项目，与代理提供商无关，且不提供任何关于网络连接或代理技术的支持。
+SwitchyOmega 目前未与任何代理提供商、VPN 提供商或 ISP 达成任何合作协议，项目或软件中不包含任何此类广告。欢迎代理提供商在教程或说明中推荐 SwitchyOmega ，但请明确说明此软件是独立项目，与代理提供商无关，且不提供任何关于网络连接或代理技术的支持。
