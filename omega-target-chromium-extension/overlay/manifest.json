@@ -24,6 +24,13 @@
     "default_title": "__MSG_manifest_icon_default_title__",
     "default_popup": "popup/index.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/content.js"],
+      "run_at": "document_end"
+    }
+  ],
   "background": {
     "page": "background.html"
   },

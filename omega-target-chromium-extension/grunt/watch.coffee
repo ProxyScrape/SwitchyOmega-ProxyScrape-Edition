@@ -20,6 +20,9 @@ module.exports =
   copy_target_popup:
     files: ['src/js/omega_target_popup.js']
     tasks: ['copy:target_popup']
+  copy_content:
+    files: ['src/js/content.js']
+    tasks: ['copy:content']
   coffee:
     files: ['src/**/*.coffee']
     tasks: ['coffeelint:src', 'browserify', 'coffee', 'copy:target_self']

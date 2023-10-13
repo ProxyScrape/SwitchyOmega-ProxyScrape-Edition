@@ -333,16 +333,18 @@ chrome.runtime.onMessage.addListener (request, sender, respond) ->
     if request.method == 'getState'
       target = state
       method = state.get
+    else if request.method == 'openProfile'
+      chrome.tabs.create(url: 'options.html#!/profile/test')
+      return response()
     else
       target = options
       method = target[request.method]
     if typeof method != 'function'
       Log.error("No such method #{request.method}!")
-      respond(
+      return respond(
         error:
           reason: 'noSuchMethod'
       )
-      return
 
     promise = Promise.resolve().then -> method.apply(target, request.args)
     if request.refreshActivePage
@@ -353,11 +355,17 @@ chrome.runtime.onMessage.addListener (request, sender, respond) ->
       if request.method == 'updateProfile'
         for own key, value of result
           result[key] = encodeError(value)
-      respond(result: result)
+      return respond(result: result)
 
     promise.catch (error) ->
       Log.error(request.method + ' ==>', error)
-      respond(error: encodeError(error))
+      return respond(error: encodeError(error))
 
   # Wait for my response!
   return true unless request.noReply
+
+chrome.runtime.onInstalled.addListener (details) ->
+  if details.reason is "install" or details.reason is "update"
+    chrome.tabs.query {}, (tabs) ->
+      for i in [0...tabs.length]
+        chrome.tabs.executeScript tabs[i].id, file: "js/content.js"

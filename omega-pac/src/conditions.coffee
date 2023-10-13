@@ -279,7 +279,8 @@ module.exports = exports =
       analyze: (condition) ->
         parts = for pattern in condition.pattern.split('|') when pattern
           # Get the magical regex of this pattern. See
-          # https://github.com/FelisCatus/SwitchyOmega/wiki/Host-wildcard-condition
+          # https://github.com/FelisCatus/SwitchyOmega/wiki/
+          # Host-wildcard-condition
           # for the magic.
           if pattern.charCodeAt(0) == '.'.charCodeAt(0)
             pattern = '*' + pattern
@@ -369,7 +370,8 @@ module.exports = exports =
         return false if cache.ip? and not @match cache.ip, request
         if cache.host?
           if cache.host == '<local>'
-            # https://code.google.com/p/chromium/codesearch#chromium/src/net/proxy/proxy_bypass_rules.cc&sq=package:chromium&l=67
+            # https://code.google.com/p/chromium/codesearch#chromium
+            # /src/net/proxy/proxy_bypass_rules.cc&sq=package:chromium&l=67
             # We align with Chromium's behavior of bypassing 127.0.0.1, ::1 as
             # well as any host without dots.
             #
@@ -539,7 +541,8 @@ module.exports = exports =
         if not cache.addr.v4
           # Example: isInNetEx(host,"fefe:13::abc/33")
           # For documentation on the isInNetEx function, see:
-          # https://msdn.microsoft.com/en-us/library/windows/desktop/gg308479(v=vs.85).aspx
+          # https://msdn.microsoft.com/en-us/library/windows/desktop/
+          # gg308479(v=vs.85).aspx
           hostIsInNetEx = new U2.AST_Call(
             expression: new U2.AST_SymbolRef name: 'isInNetEx'
             args: [

@@ -16,6 +16,11 @@ module.exports =
     cwd: 'src/js'
     src: 'omega_target_popup.js'
     dest: 'build/js/'
+  content:
+    expand: true
+    cwd: 'src/js'
+    src: 'content.js'
+    dest: 'build/js/'
   overlay:
     expand: true
     cwd: 'overlay'
