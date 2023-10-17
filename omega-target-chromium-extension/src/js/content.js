@@ -1,16 +1,12 @@
 document.getElementById("importProxy").addEventListener("click", function () {
-  // Check if extension is installed
-  var extensionId = "padekgcemlokbadohgkifijomclgjgif"; // Replace with your extension's ID
-  var proxies = [
-    {
-      name: "test",
-      host: "rp.proxyscrape.com",
-      port: 6060,
-      protocol: "http",
-      username: "bk4gz27r597mi53",
-      password: "v5cnml5lvribce2",
-    },
-  ];
+  var name = document.getElementById("proxy-name").value;
+  var host = document.getElementById("host").value;
+  var port = document.getElementById("port").value;
+  var protocol = document.getElementById("protocol").value;
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+
+  if (!name || !host || !port || !protocol) return;
 
   function generateRandomColor() {
     // Generate random values for the red, green, and blue components
@@ -26,44 +22,58 @@ document.getElementById("importProxy").addEventListener("click", function () {
     return color;
   }
 
-  var args = proxies.map((proxy) => {
+  function generateProxyProfile(proxy) {
     var res = {};
-    res[`+${proxy.name}`] = [
-      {
-        auth: {
-          fallbackProxy: {
-            password: proxy.password,
-            username: proxy.username,
-          },
+
+    var profile = {
+      bypassList: [
+        {
+          conditionType: "BypassCondition",
+          pattern: "127.0.0.1",
         },
-        bypassList: [
-          {
-            conditionType: "BypassCondition",
-            pattern: "127.0.0.1",
-          },
-          {
-            conditionType: "BypassCondition",
-            pattern: "[::1]",
-          },
-          {
-            conditionType: "BypassCondition",
-            pattern: "localhost",
-          },
-        ],
-        color: generateRandomColor(),
-        fallbackProxy: {
-          host: proxy.host,
-          port: proxy.port,
-          scheme: proxy.protocol,
+        {
+          conditionType: "BypassCondition",
+          pattern: "[::1]",
         },
-        name: proxy.name,
-        profileType: "FixedProfile",
-        revision: "18b1a77659c",
+        {
+          conditionType: "BypassCondition",
+          pattern: "localhost",
+        },
+      ],
+      color: generateRandomColor(),
+      fallbackProxy: {
+        host: proxy.host,
+        port: proxy.port,
+        scheme: proxy.protocol,
       },
-    ];
+      name: proxy.name,
+      profileType: "FixedProfile",
+      revision: "18b1a77659c",
+    };
+
+    if (proxy.username && proxy.password) {
+      profile["auth"] = {
+        fallbackProxy: {
+          password: proxy.password,
+          username: proxy.username,
+        },
+      };
+    }
+    res[`+${proxy.name}`] = [profile];
 
     return res;
-  });
+  }
+
+  var proxy = {
+    name,
+    host,
+    port: parseInt(port),
+    protocol,
+    username,
+    password,
+  };
+
+  var args = [generateProxyProfile(proxy)];
 
   try {
     chrome.runtime.sendMessage(
@@ -76,14 +86,10 @@ document.getElementById("importProxy").addEventListener("click", function () {
 
         chrome.runtime.sendMessage({
           method: "openProfile",
-          args: proxies[0].name,
+          args: proxy.name,
         });
 
-        alert(
-          `Proxy ${proxies
-            .map((proxy) => proxy.name)
-            .join(", ")} is installed but not activated.`
-        );
+        alert(`Proxy ${proxy.name} is installed but not activated.`);
       }
     );
   } catch (e) {

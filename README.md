@@ -86,16 +86,104 @@ Chromium-based browsers and also as a Firefox Addon as mentioned above.
 This is the demo code for button in website. Tailwind CSS is used for styling a button.
 
 ```html
-<button
-  id="proxy-import"
-  class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-0 focus:ring-primary-300 font-medium rounded-lg text-sm px-8 py-2.5 ml-4"
->
-  Import Proxy
-</button>
+<form class="mt-5">
+  <div class="flex gap-4">
+    <div>
+      <label for="proxy-name" class="block mb-2 font-semibold text-gray-800"
+        ><span class="text-red-500">* </span>Proxy Name
+      </label>
+      <input
+        type="text"
+        id="proxy-name"
+        name="proxy-name"
+        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+        placeholder="Proxy Name"
+        value=""
+        required
+      />
+    </div>
+    <div>
+      <label for="protocol" class="block mb-2 font-semibold text-gray-800">
+        Protocol
+      </label>
+      <select
+        id="protocol"
+        name="protocol"
+        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+      >
+        <option value="http">HTTP</option>
+        <option value="https">HTTPS</option>
+        <option value="socks4">SOCKS4</option>
+        <option value="socks5">SOCKS5</option>
+      </select>
+    </div>
+    <div>
+      <label for="host" class="block mb-2 font-semibold text-gray-800">
+        <span class="text-red-500">* </span>Server
+      </label>
+      <input
+        type="text"
+        id="host"
+        name="host"
+        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+        placeholder="rp.proxyscrape.com"
+        value=""
+        required
+      />
+    </div>
+    <div>
+      <label for="port" class="block mb-2 font-semibold text-gray-800">
+        <span class="text-red-500">* </span>Port
+      </label>
+      <input
+        type="number"
+        id="port"
+        name="port"
+        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+        placeholder="6060"
+        value=""
+        required
+      />
+    </div>
+    <div>
+      <label for="username" class="block mb-2 font-semibold text-gray-800"
+        >Username
+      </label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+        placeholder="Username"
+        value=""
+      />
+    </div>
+    <div>
+      <label for="password" class="block mb-2 font-semibold text-gray-800">
+        Password
+      </label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+        placeholder="**********"
+        value=""
+      />
+    </div>
+  </div>
+  <button
+    id="importProxy"
+    type="submit"
+    class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-0 focus:ring-primary-300 font-medium rounded-lg text-sm px-8 py-2.5 ml-4 mt-5"
+  >
+    Import Proxy
+  </button>
+</form>
 ```
 
 ```javascript
-const buttonId = "proxy-import";
+const buttonId = "importProxy";
 
 document.getElementById(buttonId).addEventListener("click", function () {
   if (document.querySelector("body > #switchy-omga-extension")) {

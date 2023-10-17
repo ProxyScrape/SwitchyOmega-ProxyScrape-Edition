@@ -1,25 +1,13 @@
 {
   "name": "switchyomega",
   "version": "0.0.1",
-  "authors": [
-    "FelisCatus <felis.catus@example.com>"
-  ],
+  "authors": ["FelisCatus <felis.catus@example.com>"],
   "description": "The ultimate proxy switcher.",
-  "keywords": [
-    "proxy",
-    "pac",
-    "extension"
-  ],
+  "keywords": ["proxy", "pac", "extension"],
   "license": "GPL",
   "homepage": "https://github.com/FelisCatus/SwitchyOmega",
   "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "dependencies": {
     "angular": "~1.7.2",
     "angular-animate": "~1.7.2",
@@ -34,7 +22,7 @@
     "ngprogress": "~1.0.4",
     "angular-ui-sortable": "~0.13.3",
     "jsondiffpatch": "~0.1.7",
-    "angular-spectrum-colorpicker": "~1.3.5",
+    "angular-spectrum-colorpicker": "git://github.com/powwowinc/angular-spectrum-colorpicker.git",
     "blob": "*",
     "FileSaver": "=1.3.3",
     "angular-ui-utils": "bower-validate",
@@ -102,16 +90,10 @@
       "": "public/build/jsondiffpatch.min.js"
     },
     "shepherd.js": {
-      "": [
-        "*.min.js",
-        "css/shepherd-theme-arrows.css"
-      ]
+      "": ["*.min.js", "css/shepherd-theme-arrows.css"]
     },
     "spectrum": {
-      "": [
-        "*.js",
-        "*.css"
-      ]
+      "": ["*.js", "*.css"]
     },
     "FileSaver": {
       "": "*.min.js"
@@ -120,10 +102,7 @@
       "": "*.js"
     },
     "ladda": {
-      "": [
-        "dist/ladda-themeless.min.css",
-        "dist/ladda.min.js"
-      ]
+      "": ["dist/ladda-themeless.min.css", "dist/ladda.min.js"]
     }
   },
   "resolutions": {

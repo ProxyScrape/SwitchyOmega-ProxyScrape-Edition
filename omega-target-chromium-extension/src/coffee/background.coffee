@@ -334,7 +334,7 @@ chrome.runtime.onMessage.addListener (request, sender, respond) ->
       target = state
       method = state.get
     else if request.method == 'openProfile'
-      chrome.tabs.create(url: 'options.html#!/profile/test')
+      chrome.tabs.create(url: 'options.html#!/profile/' + request.args)
       return response()
     else
       target = options
